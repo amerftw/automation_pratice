@@ -37,3 +37,13 @@ Cypress.Commands.add('login', (email, pw) => {
     cy.get('#SubmitLogin')
     .click();
 })
+
+Cypress.Commands.add('verifyUrl', (item, destination)=>{
+    const position = `#block_various_links_footer > ul > li:nth-child(${item}) > a`
+    cy.get(position)
+      // an <a> also has an 'href' property which always resolves
+      // to the fully qualified URL. by asserting on this property
+      // we are testing this element more thoroughly
+      .should('have.prop', 'href')
+      .and('equal', destination)
+})

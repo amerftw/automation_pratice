@@ -1,14 +1,16 @@
-describe("Testing the home page for automationpractice as anonymous user ", () => {
+/// <reference types="cypress" />
+
+describe('Testing the home page for automationpractice as anonymous user ', () => {
     before(() => {
         cy.visit("/")
     });
 
-    it('check for image in the header', () => {
+    it('Check for image in the header', () => {
         cy.get('div.banner img')
         .should('have.attr', 'src' ,'http://automationpractice.com/modules/blockbanner/img/sale70.png');
     });
 
-    it("Check the contact us", () => {
+    it('Check the contact us', () => {
         cy.get('span.shop-phone')
         .within(() => {
             cy.get('strong')
