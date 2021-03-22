@@ -35,15 +35,19 @@ Cypress.Commands.add('login', (email, pw) => {
         .type(pw)
 
     cy.get('#SubmitLogin')
-    .click();
+        .click();
 })
 
-Cypress.Commands.add('verifyUrl', (item, destination)=>{
+Cypress.Commands.add('verifyUrl', (item, destination) => {
     const position = `#block_various_links_footer > ul > li:nth-child(${item}) > a`
     cy.get(position)
-      // an <a> also has an 'href' property which always resolves
-      // to the fully qualified URL. by asserting on this property
-      // we are testing this element more thoroughly
-      .should('have.prop', 'href')
-      .and('equal', destination)
+        // an <a> also has an 'href' property which always resolves
+        // to the fully qualified URL. by asserting on this property
+        // we are testing this element more thoroughly
+        .should('have.prop', 'href')
+        .and('equal', destination)
+})
+
+Cypress.Commands.add('search', (searchTerm) => {
+    cy.get('#search_query_top').type(searchTerm+'{enter}')
 })
