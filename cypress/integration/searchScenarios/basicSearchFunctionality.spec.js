@@ -49,6 +49,14 @@ describe('Testing for basic search functionality on website', () => {
 
         cy.get('#center_column > h1 > span.heading-counter')
             .should('be.visible')
-            .and('equal', '7 results have been found.')
+            .and('contain', '7 results have been found.')
+    })
+
+    it('Enter invalid search term, it should load the result page with an error message.',()=>{
+        cy.search('car')
+
+        cy.get('.alert')
+            .should('be.visible')
+            .and('contain', 'No results were found')
     })
 })
